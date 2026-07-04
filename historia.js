@@ -3,10 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const slider = document.getElementById('history-slider');
   
   if (slider && typeof naszaHistoria !== 'undefined') {
+    // TRIK NA MNIEJSZĄ CZUŁOŚĆ: Dodajemy fizyczny dystans między kafelkami
+    // Odstęp sprawia, że trzeba wykonać dłuższy ruch palcem, by zmienić slajd
+    slider.classList.add('gap-16');
+
     naszaHistoria.forEach((wspomnienie) => {
       let mediaHtml = '';
       
-      // Zdjęcia i filmy zajmują teraz 85% szerokości ekranu, dając cieńowi miejsce po bokach
+      // Zdjęcia i filmy zajmują 85% szerokości ekranu
       if (wspomnienie.typ === 'film') {
         mediaHtml = `
           <video src="zdjecia/${wspomnienie.media}" autoplay loop muted playsinline class="w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] object-cover rounded-2xl border border-rosegold/40 mb-8 shadow-md">
@@ -17,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="zdjecia/${wspomnienie.media}" alt="${wspomnienie.tytul}" class="w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] object-cover rounded-2xl border border-rosegold/40 mb-8 shadow-md" onerror="this.outerHTML='<div class=\\'w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-8 shadow-md\\'><span class=\\'text-graphite/50 font-sans text-center px-4\\'>Brak zdjęcia:<br/>${wspomnienie.media}</span></div>'" />`;
       }
 
+      // Usunięto 'snap-always' - przeskakiwanie kilku kafelków znów jest możliwe
       const slajdHTML = `
         <section class="min-w-full h-full snap-center p-6 flex justify-center items-center" data-date="${wspomnienie.data}">
           <div class="w-full h-full max-w-md overflow-y-auto hide-scrollbar flex flex-col items-center pt-20 pb-36">
@@ -31,14 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- MAGIA CZĄSTECZEK (PARTICLES - SERDUSZKA) ---
+  // --- MAGIA CZĄSTECZEK (PARTICLES - MAŁE SERDUSZKA) ---
   const wrapper = document.getElementById('history-wrapper');
   if (wrapper) {
     for (let i = 0; i < 25; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle text-[#B76E79]'; 
       
-      const size = Math.random() * 15 + 10; 
+      const size = Math.random() * 8 + 7; 
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       particle.style.left = `${Math.random() * 100}vw`;
@@ -88,7 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
       item.wrapper.style.left = `${positionPct}%`;
 
       const absOffset = Math.abs(offset);
-      if (absOffset < windowWidth * 0.15) {
+      // Data pozostaje ostra w wyznaczonym oknie aktywacji
+      if (absOffset < windowWidth * 0.12) {
         item.textNode.style.opacity = 1;
         item.textNode.style.filter = 'blur(0px)';
         item.textNode.style.transform = 'translate(-50%, 0) scale(1)';
