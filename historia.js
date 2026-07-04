@@ -6,24 +6,23 @@ document.addEventListener("DOMContentLoaded", () => {
     naszaHistoria.forEach((wspomnienie) => {
       let mediaHtml = '';
       
-      // Sprawdzanie czy to obraz czy film (z zabezpieczeniem placeholderami)
+      // Zdjęcia i filmy zajmują teraz 85% szerokości ekranu, dając cieńowi miejsce po bokach
       if (wspomnienie.typ === 'film') {
         mediaHtml = `
-          <video src="zdjecia/${wspomnienie.media}" autoplay loop muted playsinline class="w-full shrink-0 max-h-[45vh] object-cover rounded-2xl border border-rosegold/40 mb-6 shadow-[0_4px_20px_rgba(183,110,121,0.2)]">
-            <div class="w-full h-full flex items-center justify-center bg-graphite/10 rounded-2xl border border-rosegold/40 aspect-[4/5]"><span class="text-graphite/50 font-sans">Brak pliku wideo</span></div>
+          <video src="zdjecia/${wspomnienie.media}" autoplay loop muted playsinline class="w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] object-cover rounded-2xl border border-rosegold/40 mb-8 shadow-md">
+            <div class="w-full h-full flex items-center justify-center bg-graphite/10 rounded-2xl aspect-[4/5]"><span class="text-graphite/50 font-sans">Brak pliku wideo</span></div>
           </video>`;
       } else {
         mediaHtml = `
-          <img src="zdjecia/${wspomnienie.media}" alt="${wspomnienie.tytul}" class="w-full shrink-0 max-h-[45vh] object-cover rounded-2xl border border-rosegold/40 mb-6 shadow-[0_4px_20px_rgba(183,110,121,0.2)]" onerror="this.outerHTML='<div class=\\'w-full shrink-0 max-h-[45vh] aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-6 shadow-sm\\'><span class=\\'text-graphite/50 font-sans text-center px-4\\'>Brak zdjęcia:<br/>${wspomnienie.media}</span></div>'" />`;
+          <img src="zdjecia/${wspomnienie.media}" alt="${wspomnienie.tytul}" class="w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] object-cover rounded-2xl border border-rosegold/40 mb-8 shadow-md" onerror="this.outerHTML='<div class=\\'w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-8 shadow-md\\'><span class=\\'text-graphite/50 font-sans text-center px-4\\'>Brak zdjęcia:<br/>${wspomnienie.media}</span></div>'" />`;
       }
 
-      // Struktura slajdu z oddzielnymi czcionkami (font-script dla tytułu, font-serif dla opisu)
       const slajdHTML = `
         <section class="min-w-full h-full snap-center p-6 flex justify-center items-center" data-date="${wspomnienie.data}">
           <div class="w-full h-full max-w-md overflow-y-auto hide-scrollbar flex flex-col items-center pt-20 pb-36">
-            <h3 class="font-script text-6xl sm:text-7xl text-ink mb-6 text-center drop-shadow-sm shrink-0 leading-tight">${wspomnienie.tytul}</h3>
+            <h3 class="font-script text-6xl sm:text-7xl text-ink mb-8 text-center drop-shadow-md shrink-0 leading-tight">${wspomnienie.tytul}</h3>
             ${mediaHtml}
-            <p class="font-serif text-[#D2042D] text-xl text-center italic leading-relaxed">${wspomnienie.opis}</p>
+            <p class="font-serif text-[#D2042D] text-xl text-center italic leading-relaxed drop-shadow-sm">${wspomnienie.opis}</p>
           </div>
         </section>
       `;
@@ -32,18 +31,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- MAGIA CZĄSTECZEK (PARTICLES) ---
+  // --- MAGIA CZĄSTECZEK (PARTICLES - SERDUSZKA) ---
   const wrapper = document.getElementById('history-wrapper');
   if (wrapper) {
     for (let i = 0; i < 25; i++) {
       const particle = document.createElement('div');
-      particle.className = 'particle';
-      const size = Math.random() * 5 + 2; 
+      particle.className = 'particle text-[#B76E79]'; 
+      
+      const size = Math.random() * 15 + 10; 
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       particle.style.left = `${Math.random() * 100}vw`;
       particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
       particle.style.animationDelay = `${Math.random() * 5}s`;
+      
+      particle.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
+          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+        </svg>
+      `;
       wrapper.appendChild(particle);
     }
   }
@@ -55,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!slider || !slides.length || !timelineContainer) return;
 
-  // Generowanie kropek i dat
   slides.forEach((slide) => {
     const dateText = slide.getAttribute('data-date');
     const dotWrapper = document.createElement('div');
@@ -72,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
     dotElements.push({ slide: slide, wrapper: dotWrapper, textNode: dotWrapper.querySelector('p') });
   });
 
-  // Funkcja przeliczająca pozycje przy scrollowaniu
   function updateTimeline() {
     const windowWidth = window.innerWidth;
     
@@ -80,11 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const rect = item.slide.getBoundingClientRect();
       const offset = rect.left + (rect.width / 2) - (windowWidth / 2);
       
-      // Obliczanie położenia kropki na osi (%)
       let positionPct = 50 - (offset / windowWidth) * 50;
       item.wrapper.style.left = `${positionPct}%`;
 
-      // Logika pojawiania się daty
       const absOffset = Math.abs(offset);
       if (absOffset < windowWidth * 0.15) {
         item.textNode.style.opacity = 1;
@@ -98,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Obsługa płynnego scrollowania
   let isScrolling = false;
   slider.addEventListener('scroll', () => {
     if (!isScrolling) {
@@ -110,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   
-  // Przeliczanie przy zmianie orientacji/rozmiaru ekranu
   window.addEventListener('resize', updateTimeline);
-  updateTimeline(); // Pierwsze uruchomienie
+  updateTimeline();
 });

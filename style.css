@@ -1,4 +1,4 @@
-/* Import klasycznych czcionek oraz romantycznej kaligrafii (Dancing Script) */
+/* NAPRAWIONY Import klasycznych czcionek oraz romantycznej kaligrafii (Dancing Script) */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500;700&family=Nunito+Sans:wght@300;400;600&display=swap');
 
 /* Klasa dla czcionki listu miłosnego */
@@ -29,6 +29,24 @@
   display: none;
 }
 
+/* --- EFEKT POWIĘKSZENIA I FIOLETOWEJ POŚWIATY --- */
+#history-slider img,
+#history-slider video,
+#history-slider .bg-graphite\/10 {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.4s ease !important;
+  will-change: transform, box-shadow;
+  cursor: pointer;
+}
+
+/* Efekt po najechaniu/kliknięciu - Zoptymalizowana fioletowa poświata (25px) */
+#history-slider img:hover, #history-slider img:active,
+#history-slider video:hover, #history-slider video:active,
+#history-slider .bg-graphite\/10:hover, #history-slider .bg-graphite\/10:active {
+  transform: scale(1.04); 
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.6) !important; 
+  border-color: rgba(139, 92, 246, 0.5) !important; 
+}
+
 /* --- MAGIA ROMANTYCZNA --- */
 
 /* Efekt bicia serca dla ostrej, czerwonej kropki */
@@ -44,12 +62,10 @@
   70% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 10px rgba(210, 4, 45, 0.5); }
 }
 
-/* Pływające cząsteczki "gwiezdnego pyłu" */
+/* Pływające cząsteczki serduszek */
 .particle {
   position: absolute;
-  bottom: -20px; /* Cząsteczki startują pod krawędzią ekranu */
-  background-color: #B76E79;
-  border-radius: 50%;
+  bottom: -30px;
   pointer-events: none;
   z-index: 1;
   animation-name: float-up;
@@ -58,8 +74,8 @@
 }
 
 @keyframes float-up {
-  0% { transform: translateY(0) scale(0.5); opacity: 0; }
-  15% { opacity: 0.4; }
-  85% { opacity: 0.4; }
-  100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+  0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.6; }
+  85% { opacity: 0.6; }
+  100% { transform: translateY(-120vh) scale(1.2) rotate(15deg); opacity: 0; }
 }
