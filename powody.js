@@ -43,8 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // Jeśli dodano nasz nowy format (obiekt)
         reasonText = reasonData.text || reasonText;
         if (reasonData.image) {
-          // Kod HTML dla zdjęcia (ładnie sformatowany Tailwindem)
-          imageHtml = `<img src="${reasonData.image}" alt="Nasze wspomnienie" class="w-full h-48 object-cover rounded-xl mb-4 border border-rosegold/10 shadow-sm" />`;
+          // Kod HTML dla zdjęcia - usunięto fioletową poświatę, zachowano jedynie subtelny zoom (hover/active)
+          imageHtml = `
+            <img src="${reasonData.image}" 
+                 alt="Nasze wspomnienie" 
+                 class="w-full h-48 object-cover rounded-xl mb-4 border border-rosegold/10 shadow-sm cursor-pointer transition-transform duration-300 ease-out hover:scale-102 active:scale-102" />
+          `;
         }
       } else {
         // Zabezpieczenie: jeśli wpiszesz stary format (sam tekst w cudzysłowie)
@@ -52,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     
-    // Składanie całego kafelka w całość
+    // Składanie całego kafelka w całość (z zachowaniem Twojej czcionki książkowej font-serif)
     tile.innerHTML = `
       <span class="font-serif text-rosegold text-2xl mb-3 font-bold">#${i}</span>
       ${imageHtml}
