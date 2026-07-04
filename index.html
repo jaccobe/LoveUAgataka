@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 1 year together</title>
+  
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind-config.js"></script>
+  <script src="transitions.js"></script>
+</head>
+<body class="bg-cream text-ink font-sans min-h-screen antialiased fade-in flex flex-col">
+  
+  <div class="w-full text-center sm:text-right pt-6 px-6">
+    <p class="font-serif text-xl sm:text-2xl text-rosegold tracking-wide">Happy 1 year together</p>
+    <p class="mt-1 text-xs sm:text-sm text-graphite/70 italic">Od 20 grudnia minęło: <span id="time-counter" class="font-semibold text-ink"></span></p>
+  </div>
+  
+  <main class="flex-grow flex flex-col items-center justify-center text-center px-6 py-12">
+    <h1 class="font-serif text-4xl sm:text-6xl font-medium text-ink leading-tight max-w-2xl">Dla Ciebie, z całego serca</h1>
+    <p class="mt-4 font-serif italic text-lg sm:text-xl text-graphite/70 max-w-md">Mały zbiór chwil, powodów i wspomnień, które nas łączą.</p>
+    
+    <div class="mt-10 w-full max-w-sm flex flex-col gap-4">
+      <a href="powody.html" class="block w-full py-5 rounded-2xl bg-rosegold text-cream font-serif text-xl shadow-lg active:scale-95 transition">50 Powodów</a>
+      <a href="historia.html" class="block w-full py-5 rounded-2xl bg-cream border-2 border-rosegold text-rosegold font-serif text-xl shadow-md active:scale-95 transition">Nasze piękne wspólne chwile</a>
+    </div>
+  </main>
+
+  <script src="timer.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nasza Historia</title>
+  
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind-config.js"></script>
+</head>
+<body class="bg-cream text-ink font-sans min-h-screen antialiased fade-in">
+  
+  <main id="history-wrapper" class="h-screen w-full relative overflow-hidden bg-cream">
+    
+    <!-- Przycisk powrotu -->
+    <a href="index.html" class="absolute top-6 left-6 z-50 py-2 px-4 rounded-full bg-rosegold/20 text-ink font-serif font-bold shadow-sm backdrop-blur-md hover:bg-rosegold/40 transition-colors duration-300">
+      ← Wróć
+    </a>
+
+    <!-- Kontener przewijany w poziomie (Slider) -->
+    <div id="history-slider" class="relative z-10 flex h-full w-full overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
+      
+      <!-- Slajd 1 -->
+      <section class="min-w-full h-full snap-center flex flex-col justify-center items-center p-6" data-date="14 Lutego 2023">
+        <h3 class="font-script text-5xl sm:text-7xl text-ink mb-6 text-center drop-shadow-sm">Nasza pierwsza randka</h3>
+        <div class="w-full max-w-sm aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-6 shadow-[0_4px_20px_rgba(183,110,121,0.2)]">
+          <span class="text-graphite/50 font-sans text-lg">Zdjęcie 1</span>
+        </div>
+        <!-- Nowy, namiętny odcień czerwieni: #D2042D -->
+        <p class="text-[#D2042D] font-serif text-xl text-center max-w-md italic">Byłem tak zdenerwowany, że prawie zapomniałem jak się nazywam...</p>
+      </section>
+
+      <!-- Slajd 2 -->
+      <section class="min-w-full h-full snap-center flex flex-col justify-center items-center p-6" data-date="15 Sierpnia 2023">
+        <h3 class="font-script text-5xl sm:text-7xl text-ink mb-6 text-center drop-shadow-sm">Wakacje nad morzem</h3>
+        <div class="w-full max-w-sm aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-6 shadow-[0_4px_20px_rgba(183,110,121,0.2)]">
+          <span class="text-graphite/50 font-sans text-lg">Wideo (Placeholder)</span>
+        </div>
+        <p class="text-[#D2042D] font-serif text-xl text-center max-w-md italic">Zachód słońca, szum fal i my. Idealny wieczór.</p>
+      </section>
+
+      <!-- Slajd 3 -->
+      <section class="min-w-full h-full snap-center flex flex-col justify-center items-center p-6" data-date="20 Grudnia 2023">
+        <h3 class="font-script text-5xl sm:text-7xl text-ink mb-6 text-center drop-shadow-sm">Początek czegoś wielkiego</h3>
+        <div class="w-full max-w-sm aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-6 shadow-[0_4px_20px_rgba(183,110,121,0.2)]">
+          <span class="text-graphite/50 font-sans text-lg">Zdjęcie 3</span>
+        </div>
+        <p class="text-[#D2042D] font-serif text-xl text-center max-w-md italic">Dzień, w którym wszystko się zmieniło. Kocham Cię.</p>
+      </section>
+
+    </div>
+
+    <!-- ZAAWANSOWANA OŚ CZASU -->
+    <div class="absolute bottom-0 w-full h-28 bg-gradient-to-t from-cream via-cream/90 to-transparent pointer-events-none z-20">
+      <!-- Pływająca linia w tle -->
+      <div class="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-rosegold/60 to-transparent transform -translate-y-1/2"></div>
+      
+      <!-- Kontener, w którym JS umieści kropki podróżujące wraz ze scrollowaniem -->
+      <div id="dynamic-timeline" class="absolute top-0 left-0 w-full h-full"></div>
+    </div>
+
+  </main>
+
+  <script src="transitions.js"></script>
+  <script src="historia.js"></script>
+</body>
+</html>
