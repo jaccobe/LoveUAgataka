@@ -13,58 +13,13 @@
   
   <main id="history-wrapper" class="h-screen w-full relative overflow-hidden bg-cream">
     
-    <!-- Przycisk powrotu -->
     <a href="index.html" class="absolute top-6 left-6 z-50 py-2 px-4 rounded-full bg-rosegold/20 text-ink font-serif font-bold shadow-sm backdrop-blur-md hover:bg-rosegold/40 transition-colors duration-300">
       ← Wróć
     </a>
 
-    <!-- Kontener przewijany w poziomie (Slider) -->
     <div id="history-slider" class="relative z-10 flex h-full w-full overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
-      
-      <!-- Slajd 1 -->
-      <section class="min-w-full h-full snap-center p-6 flex justify-center items-center" data-date="14 Lutego 2023">
-        <!-- Wewnętrzny, przewijany w pionie kontener na treść -->
-        <div class="w-full h-full max-w-md overflow-y-auto hide-scrollbar flex flex-col items-center pt-20 pb-36">
-          <h3 class="font-script text-5xl sm:text-7xl text-ink mb-6 text-center drop-shadow-sm shrink-0">Nasza pierwsza randka</h3>
-          <!-- Zdjęcie zabezpieczone przed zgniataniem (shrink-0) i skalujące się do ekranu -->
-          <div class="w-full shrink-0 max-h-[45vh] aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-6 shadow-[0_4px_20px_rgba(183,110,121,0.2)]">
-            <span class="text-graphite/50 font-sans text-lg">Zdjęcie 1</span>
-          </div>
-          <p class="text-[#D2042D] font-serif text-xl text-center italic leading-relaxed">
-            Byłem tak zdenerwowany, że prawie zapomniałem jak się nazywam... Tutaj możesz wpisać naprawdę długi, romantyczny tekst. Nawet jeśli będzie to kilka sporych akapitów, użytkownik po prostu swobodnie przewinie je sobie w dół palcem.
-          </p>
-        </div>
-      </section>
-
-      <!-- Slajd 2 -->
-      <section class="min-w-full h-full snap-center p-6 flex justify-center items-center" data-date="15 Sierpnia 2023">
-        <div class="w-full h-full max-w-md overflow-y-auto hide-scrollbar flex flex-col items-center pt-20 pb-36">
-          <h3 class="font-script text-5xl sm:text-7xl text-ink mb-6 text-center drop-shadow-sm shrink-0">Wakacje nad morzem</h3>
-          <div class="w-full shrink-0 max-h-[45vh] aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-6 shadow-[0_4px_20px_rgba(183,110,121,0.2)]">
-            <span class="text-graphite/50 font-sans text-lg">Wideo (Placeholder)</span>
-          </div>
-          <p class="text-[#D2042D] font-serif text-xl text-center italic leading-relaxed">
-            Zachód słońca, szum fal i my. Idealny wieczór, którego nigdy nie zapomnę.
-          </p>
-        </div>
-      </section>
-
-      <!-- Slajd 3 -->
-      <section class="min-w-full h-full snap-center p-6 flex justify-center items-center" data-date="20 Grudnia 2023">
-        <div class="w-full h-full max-w-md overflow-y-auto hide-scrollbar flex flex-col items-center pt-20 pb-36">
-          <h3 class="font-script text-5xl sm:text-7xl text-ink mb-6 text-center drop-shadow-sm shrink-0">Początek wielkiego</h3>
-          <div class="w-full shrink-0 max-h-[45vh] aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-6 shadow-[0_4px_20px_rgba(183,110,121,0.2)]">
-            <span class="text-graphite/50 font-sans text-lg">Zdjęcie 3</span>
-          </div>
-          <p class="text-[#D2042D] font-serif text-xl text-center italic leading-relaxed">
-            Dzień, w którym wszystko się zmieniło. Kocham Cię najmocniej na świecie.
-          </p>
-        </div>
-      </section>
-
     </div>
 
-    <!-- ZAAWANSOWANA OŚ CZASU -->
     <div class="absolute bottom-0 w-full h-28 bg-gradient-to-t from-cream via-cream/90 to-transparent pointer-events-none z-20">
       <div class="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-rosegold/60 to-transparent transform -translate-y-1/2"></div>
       <div id="dynamic-timeline" class="absolute top-0 left-0 w-full h-full"></div>
@@ -73,6 +28,5 @@
   </main>
 
   <script src="transitions.js"></script>
-  <script src="historia.js"></script>
-</body>
+  <script src="historia-baza.js"></script> <script src="historia.js"></script> </body>
 </html>
