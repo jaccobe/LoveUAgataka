@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="media/${wspomnienie.media}" alt="${wspomnienie.tytul}" class="max-w-[85%] sm:max-w-[90%] shrink-0 max-h-[45vh] h-auto rounded-2xl border border-rosegold/40 mb-8 shadow-md" onerror="this.outerHTML='<div class=\\'w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-8 shadow-md\\'><span class=\\'text-graphite/50 font-sans text-center px-4\\'>Brak zdjęcia:<br/>media/${wspomnienie.media}</span></div>'" />`;
       }
 
-      // POPRAWKA: Zmiana pt-20 na pt-6 (wyrównanie ze strzałką) oraz dodanie px-12 (ochrona przed nakładaniem)
+      // POPRAWKA: Zmiana pt-6 na pt-2, co podciąga tytuł pod samą górną krawędź ekranu
       const slajdHTML = `
         <section class="min-w-full h-full snap-center p-6 flex justify-center items-center" data-date="${wspomnienie.data}">
-          <div class="w-full h-full max-w-md overflow-y-auto hide-scrollbar flex flex-col items-center pt-6 pb-36">
+          <div class="w-full h-full max-w-md overflow-y-auto hide-scrollbar flex flex-col items-center pt-2 pb-36">
             <h3 class="font-script text-6xl sm:text-7xl text-ink mb-8 text-center drop-shadow-md shrink-0 leading-tight px-12">${wspomnienie.tytul}</h3>
             ${mediaHtml}
             <p class="font-serif text-[#D2042D] text-xl text-center italic leading-relaxed drop-shadow-sm">${wspomnienie.opis}</p>
