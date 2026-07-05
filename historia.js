@@ -4,11 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- DETEKTOR PIKSELI (ROZWIĄZANIE PROBLEMU Z PASKIEM ADRESU) ---
   function fixMobileHeight() {
     if (wrapper) {
-      // Pobieramy absolutnie dokładną wysokość dostępnego okna w pikselach
       wrapper.style.height = `${window.innerHeight}px`;
     }
   }
-  // Uruchom natychmiast po załadowaniu oraz przy każdej zmianie rozmiaru / obrocie ekranu
   fixMobileHeight();
   window.addEventListener('resize', fixMobileHeight);
   window.addEventListener('orientationchange', fixMobileHeight);
@@ -24,14 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
     naszaHistoria.forEach((wspomnienie) => {
       let mediaHtml = '';
       
+      // ZMIANA: Usunięto sztywne w-[85%] i object-contain. Wstawiono max-w-[85%] oraz h-auto. 
+      // Teraz kontener <img>/video naturalnie otula plik, dzięki czemu ramka i poświata idealnie dopasowują się do jego obrysu.
       if (wspomnienie.typ === 'film') {
         mediaHtml = `
-          <video src="zdjecia/${wspomnienie.media}" autoplay loop muted playsinline class="w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] object-cover rounded-2xl border border-rosegold/40 mb-8 shadow-md">
+          <video src="media/${wspomnienie.media}" autoplay loop muted playsinline class="max-w-[85%] sm:max-w-[90%] shrink-0 max-h-[45vh] h-auto rounded-2xl border border-rosegold/40 mb-8 shadow-md">
             <div class="w-full h-full flex items-center justify-center bg-graphite/10 rounded-2xl aspect-[4/5]"><span class="text-graphite/50 font-sans">Brak pliku wideo</span></div>
           </video>`;
       } else {
         mediaHtml = `
-          <img src="zdjecia/${wspomnienie.media}" alt="${wspomnienie.tytul}" class="w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] object-cover rounded-2xl border border-rosegold/40 mb-8 shadow-md" onerror="this.outerHTML='<div class=\\'w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-8 shadow-md\\'><span class=\\'text-graphite/50 font-sans text-center px-4\\'>Brak zdjęcia:<br/>${wspomnienie.media}</span></div>'" />`;
+          <img src="media/${wspomnienie.media}" alt="${wspomnienie.tytul}" class="max-w-[85%] sm:max-w-[90%] shrink-0 max-h-[45vh] h-auto rounded-2xl border border-rosegold/40 mb-8 shadow-md" onerror="this.outerHTML='<div class=\\'w-[85%] sm:w-[90%] shrink-0 max-h-[45vh] aspect-[4/5] bg-graphite/10 rounded-2xl border border-rosegold/40 flex items-center justify-center mb-8 shadow-md\\'><span class=\\'text-graphite/50 font-sans text-center px-4\\'>Brak zdjęcia:<br/>media/${wspomnienie.media}</span></div>'" />`;
       }
 
       const slajdHTML = `
